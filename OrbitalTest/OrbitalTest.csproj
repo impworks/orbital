@@ -20,14 +20,15 @@
     <Content Include="Content\orbital.css" />
     <Content Include="Content\Sprites\rocket2.png" />
     <Content Include="index.html" />
-    <Content Include="Scripts\Libs\phaser.js" />
+    <Content Include="Libs\phaser.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\Libs\phaser.d.ts" />
-    <TypeScriptCompile Include="Scripts\orbital.ts" />
-    <TypeScriptCompile Include="Scripts\Objects\rocket.ts" />
-    <TypeScriptCompile Include="Scripts\States\main.ts" />
+    <TypeScriptCompile Include="Libs\phaser.d.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
+    <TypeScriptCompile Include="Scripts\Orbital.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Rocket.ts" />
+    <TypeScriptCompile Include="Scripts\States\MainState.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

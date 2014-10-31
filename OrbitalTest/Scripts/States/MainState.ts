@@ -1,13 +1,21 @@
 ﻿class MainState extends Phaser.State {
-    
+
+    constructor() {
+        super();
+    }
+
+    bg: SkyBackground;
     rocket: Rocket;
+
 
     preload() {
         this.load.image('rocket2', 'Content/Sprites/rocket2.png');
     }
 
     create() {
+        this.bg = new SkyBackground(this.game);
         this.rocket = new Rocket(this.game, 320, 800);
+
         var isThrusting = false;
 
         this.input.mouse.onMouseDown = (evt) => {
