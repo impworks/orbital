@@ -18,13 +18,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Content\orbital.css" />
-    <Content Include="Content\Sprites\rocket2.png" />
+    <Content Include="Content\Sprites\planet-any.png" />
+    <Content Include="Content\Sprites\planet-hover.png" />
+    <Content Include="Content\Sprites\planet-selected.png" />
+    <Content Include="Content\Sprites\plasma.png" />
+    <Content Include="Content\Sprites\rocket.png" />
     <Content Include="index.html" />
     <Content Include="Libs\phaser.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Libs\phaser.d.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Orbits\Orbit.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
     <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
     <TypeScriptCompile Include="Scripts\Orbital.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Rocket.ts" />

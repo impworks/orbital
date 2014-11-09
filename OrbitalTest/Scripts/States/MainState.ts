@@ -4,36 +4,31 @@
         super();
     }
 
+    // -----------------------
+    // Fields
+    // -----------------------
+
     bg: SkyBackground;
     rocket: Rocket;
-
+    planets: Planet[];
+    plasma: Plasma;
 
     preload() {
-        this.load.image('rocket2', 'Content/Sprites/rocket2.png');
+        var assets = [
+            'rocket',
+            'planet-any',
+            'planet-hover',
+            'planet-selected',
+            'plasma'
+        ];
+
+        assets.forEach(name => this.load.image(name, 'Content/Sprites/' + name + '.png'));
     }
 
     create() {
         this.bg = new SkyBackground(this.game);
-        this.rocket = new Rocket(this.game, 320, 800);
+        this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
 
-        var isThrusting = false;
-
-        this.input.mouse.onMouseDown = (evt) => {
-            this.rocket.thrustTo(evt.clientX, evt.clientY);
-            isThrusting = true;
-        };
-
-        this.input.mouse.onMouseUp = (evt) => {
-            this.rocket.stop();
-            isThrusting = false;
-        };
-
-        this.input.mouse.onMouseMove = (evt) => {
-            if (isThrusting) {
-                this.rocket.thrustTo(evt.clientX, evt.clientY);
-            } else {
-                this.rocket.stop();
-            }
-        };
+        // todo: create stuff
     }
 } 
