@@ -47,7 +47,11 @@
     }
 
     createGraphics() {
-        this.lineStyle(4, 0xFFFFFF, 0.6);
+        if (this.planet.isSelected)
+            this.lineStyle(4, 0xFFFFFF, 0.6);
+        else
+            this.lineStyle(2, 0xFFFFFF, 0.1 + Math.min(0.4 * OrbitalGame.SCREEN_WIDTH/(2 * this.state.radius), 0.4));
+
         this.drawCircle(this.planet.position.x, this.planet.position.y, this.state.radius * 2);
     }
 
