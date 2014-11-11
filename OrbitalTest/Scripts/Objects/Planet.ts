@@ -17,8 +17,5 @@
     // -----------------------
 
     isSelected: boolean;
-    size: number;
-    position: Phaser.Point;
-    rotation: number;
     gravity: number;
 } 
