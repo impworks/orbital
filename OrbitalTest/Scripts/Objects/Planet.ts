@@ -29,8 +29,7 @@
     gravity: number;
 
     onClicked() {
-        var orbit = this.state.orbit;
-        if (orbit.planet != this) {
+        if (this.state.orbit.planet != this) {
             this.state.setRocketOrbit(this);
         }
     }

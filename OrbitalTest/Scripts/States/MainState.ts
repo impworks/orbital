@@ -17,7 +17,7 @@
     planets: Planet[];
     plasma: Plasma;
 
-    orbit: IOrbit;
+    orbit: Orbit;
 
     // -----------------------
     // Resource loading
@@ -43,7 +43,7 @@
         this.bg = new SkyBackground(this.game);
         this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.planets = this.createPlanets();
-        this.setRocketOrbit();
+        this.setRocketOrbit(this.planets[0]);
     }
 
     createPlanets(): Planet[] {
@@ -53,34 +53,17 @@
         ];
     }
 
-    setRocketOrbit(planet?: Planet) {
-        // calculate stuff
-        var p = planet || this.planets[0];
-        var r = this.rocket;
-        var dist = this.distance(r, p);
-        var radius = Math.sqrt(Math.pow(dist.x, 2) + Math.pow(dist.y, 2));
-        var angle = Math.atan2(dist.y, dist.x);
-        var speed = 3;
-
-        // update selections
+    setRocketOrbit(p: Planet) {
         p.isSelected = true;
-        if (this.orbit && this.orbit.planet) {
-            this.orbit.planet.isSelected = false;
+
+        if (this.orbit) {
+            if(this.orbit.planet)
+                this.orbit.planet.isSelected = false;
+
+            this.orbit.destroy();
         }
 
-        // set new orbit
-        this.orbit = {
-            planet: p,
-            radius: radius,
-            speed: speed,
-            angle: angle,
-            angleIncrement: this.calculateAngleIncrement(radius, speed)
-        };
-    }
-
-    calculateAngleIncrement(radius: number, speed: number) : number {
-        var len = radius * 2 * Math.PI;
-        return speed / len * Math.PI * 2;
+        this.orbit = new Orbit(this.game, this.rocket, p);
     }
 
     // -----------------------
@@ -92,39 +75,22 @@
     }
 
     moveRocket() {
-        this.orbit.angle += this.orbit.angleIncrement;
+        var center = this.orbit.planet.position;
+        var state = this.orbit.state;
+        var r = this.rocket;
+        state.angle += state.angleIncrement;
 
         var newPos = {
-            x: this.orbit.planet.position.x + Math.cos(this.orbit.angle) * this.orbit.radius,
-            y: this.orbit.planet.position.y + Math.sin(this.orbit.angle) * this.orbit.radius
+            x: center.x + Math.cos(state.angle) * state.radius,
+            y: center.y + Math.sin(state.angle) * state.radius
         };
 
         var dist = {
-            x: newPos.x - this.rocket.position.x,
-            y: newPos.y - this.rocket.position.y,
+            x: newPos.x - r.position.x,
+            y: newPos.y - r.position.y,
         };
 
-        this.rocket.rotation = Math.atan2(dist.y, dist.x);
-        this.rocket.position.x = newPos.x;
-        this.rocket.position.y = newPos.y;
+        r.rotation = Math.atan2(dist.y, dist.x);
+        r.position.set(newPos.x, newPos.y);
     }
-
-    // -----------------------
-    // Helpers
-    // -----------------------
-
-    distance(a: Phaser.Sprite, b: Phaser.Sprite): { x: number; y: number } {
-        return {
-            x: a.position.x - b.position.x,
-            y: a.position.y - b.position.y,
-        };
-    }
-}
-
-interface IOrbit {
-    planet: Planet;
-    radius: number;
-    speed: number;
-    angle: number;
-    angleIncrement: number;
 }
