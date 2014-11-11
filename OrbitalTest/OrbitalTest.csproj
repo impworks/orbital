@@ -32,6 +32,7 @@
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\ScoreCounter.ts" />
     <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
     <TypeScriptCompile Include="Scripts\Orbital.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Rocket.ts" />

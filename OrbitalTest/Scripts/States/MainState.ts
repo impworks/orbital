@@ -6,16 +6,30 @@
 
     constructor() {
         super();
+
+        var margin = 0.2;
+        var w = OrbitalGame.SCREEN_WIDTH;
+        var h = OrbitalGame.SCREEN_HEIGHT;
+        this.bounds = {
+            screen: new Phaser.Rectangle(0, 0, w, h),
+            playZone: new Phaser.Rectangle(w * margin, h * margin, w - w*margin*2, h-h*margin*2)
+        };
     }
 
     // -----------------------
     // Fields
     // -----------------------
 
+    bounds: {
+        screen: Phaser.Rectangle;
+        playZone: Phaser.Rectangle;
+    };
+
     bg: SkyBackground;
     rocket: Rocket;
     planets: Planet[];
     plasma: Plasma;
+    scoreCounter: ScoreCounter;
 
     orbit: Orbit;
 
@@ -41,8 +55,13 @@
 
     create() {
         this.bg = new SkyBackground(this.game);
+
         this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.planets = this.createPlanets();
+
+        this.plasma = new Plasma(this.game, 450, 320);
+        this.scoreCounter = new ScoreCounter(this.game);
+
         this.setRocketOrbit(this.planets[0]);
     }
 
@@ -72,6 +91,7 @@
 
     update() {
         this.moveRocket();
+        this.checkCollisions();
     }
 
     moveRocket() {
@@ -92,5 +112,28 @@
 
         r.rotation = Math.atan2(dist.y, dist.x);
         r.position.set(newPos.x, newPos.y);
+    }
+
+    checkCollisions() {
+        // rocket and plasma
+        if (this.rocket.overlap(this.plasma)) {
+            this.scoreCounter.score++;
+            this.plasma.position.set(this.bounds.playZone.randomX, this.bounds.playZone.randomY);
+        }
+
+        this.planets.forEach(p => {
+            if (p.overlap(this.rocket)) {
+                this.restartGame();
+            }
+        });
+
+//        if (!this.bounds.playZone.contains(this.rocket.position.x, this.rocket.position.y))
+//            this.restartGame();
+    }
+
+    restartGame() {
+        this.rocket.position.set(OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
+        this.setRocketOrbit(this.planets[0]);
+        this.scoreCounter.score = 0;
     }
 }
