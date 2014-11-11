@@ -10,10 +10,11 @@
         game.add.existing(this);
     }
 
+    // -----------------------
+    // Fields
+    // -----------------------
+
     private destination: Phaser.Point;
     private momentum: Phaser.Point;
     private velocity: Phaser.Point;
-
-    update() {
-    }
 } 

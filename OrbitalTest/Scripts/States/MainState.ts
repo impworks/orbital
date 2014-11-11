@@ -43,26 +43,33 @@
         this.bg = new SkyBackground(this.game);
         this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.planets = this.createPlanets();
-        this.orbit = this.initRocketOrbit();
-
-        // todo: subscribe to events
+        this.setRocketOrbit();
     }
 
     createPlanets(): Planet[] {
         return [
-            new Planet(this.game, 300, 300),
-            new Planet(this.game, 700, 400)
+            new Planet(this.game, 300, 300, this),
+            new Planet(this.game, 700, 400, this)
         ];
     }
 
-    initRocketOrbit(): IOrbit {
-        var p = this.planets[0];
+    setRocketOrbit(planet?: Planet) {
+        // calculate stuff
+        var p = planet || this.planets[0];
         var r = this.rocket;
-        var radius = Math.sqrt(Math.pow(p.position.x - r.position.x, 2) + Math.pow(p.position.y - r.position.y, 2));
-        var angle = Math.atan2(1, 2);
+        var dist = this.distance(r, p);
+        var radius = Math.sqrt(Math.pow(dist.x, 2) + Math.pow(dist.y, 2));
+        var angle = Math.atan2(dist.y, dist.x);
         var speed = 3;
 
-        return {
+        // update selections
+        p.isSelected = true;
+        if (this.orbit && this.orbit.planet) {
+            this.orbit.planet.isSelected = false;
+        }
+
+        // set new orbit
+        this.orbit = {
             planet: p,
             radius: radius,
             speed: speed,
@@ -97,9 +104,20 @@
             y: newPos.y - this.rocket.position.y,
         };
 
-        this.rocket.rotation = -(Math.atan2(dist.x, dist.y) - (Math.PI / 2));
+        this.rocket.rotation = Math.atan2(dist.y, dist.x);
         this.rocket.position.x = newPos.x;
         this.rocket.position.y = newPos.y;
+    }
+
+    // -----------------------
+    // Helpers
+    // -----------------------
+
+    distance(a: Phaser.Sprite, b: Phaser.Sprite): { x: number; y: number } {
+        return {
+            x: a.position.x - b.position.x,
+            y: a.position.y - b.position.y,
+        };
     }
 }
 
