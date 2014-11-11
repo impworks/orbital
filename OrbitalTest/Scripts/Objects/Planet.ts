@@ -19,7 +19,6 @@
         this.events.onInputDown.add(() => this.onClicked());
 
         this.isSelected = false;
-        this.updateOrbit();
     }
 
     // -----------------------
@@ -28,17 +27,10 @@
 
     isSelected: boolean;
     gravity: number;
-    orbit: Orbit;
 
     onClicked() {
         if (this.state.orbit.planet != this) {
             this.state.setRocketOrbit(this);
         }
-    }
-
-    updateOrbit() {
-        if(this.orbit)
-            this.orbit.destroy();
-        this.orbit = new Orbit(this.game, this.state.rocket, this);
     }
 } 

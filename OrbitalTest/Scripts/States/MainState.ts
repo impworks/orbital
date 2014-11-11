@@ -49,8 +49,7 @@
     createPlanets(): Planet[] {
         return [
             new Planet(this.game, 300, 300, this),
-            new Planet(this.game, 700, 400, this),
-            new Planet(this.game, 500, 100, this)
+            new Planet(this.game, 700, 400, this)
         ];
     }
 
@@ -73,7 +72,6 @@
 
     update() {
         this.moveRocket();
-        this.updateOrbits();
     }
 
     moveRocket() {
@@ -94,14 +92,5 @@
 
         r.rotation = Math.atan2(dist.y, dist.x);
         r.position.set(newPos.x, newPos.y);
-    }
-
-    updateOrbits() {
-        for (var i = 0; i < this.planets.length; i++) {
-            var p = this.planets[i];
-            if (p.orbit != this.orbit) {
-                p.updateOrbit();
-            }
-        }
     }
 }
