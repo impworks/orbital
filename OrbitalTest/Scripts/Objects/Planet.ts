@@ -20,6 +20,7 @@
         this.events.onInputOut.add(() => this.onMouseOut());
 
         this.isSelected = false;
+        this.isHovered = false;
     }
 
     // -----------------------
@@ -33,10 +34,27 @@
     set isSelected(value: boolean) {
         if (value != this.isSelected) {
             this._isSelected = value;
+            this._isHovered = false;
             this.loadTexture(value ? 'planet-selected' : 'planet-any', 0);
             this.anchor.setTo(0.5, 0.5);
         }
     }
+
+    private _isHovered: boolean;
+    get isHovered(): boolean {
+        return this._isHovered;
+    }
+    set isHovered(value: boolean) {
+        if (value != this.isHovered && !this.isSelected) {
+            this._isHovered = value;
+            this.loadTexture(value ? 'planet-hover' : 'planet-any', 0);
+            this.anchor.setTo(0.5, 0.5);
+        }
+    }
+
+    // -----------------------
+    // Fields
+    // -----------------------
 
     onClicked() {
         if (this.state.orbit.planet != this) {
@@ -45,16 +63,10 @@
     }
 
     onMouseOver() {
-        if (!this.isSelected) {
-            this.loadTexture('planet-hover', 0);
-            this.anchor.setTo(0.5, 0.5);
-        }
+        this.isHovered = true;
     }
 
     onMouseOut() {
-        if (!this.isSelected) {
-            this.loadTexture('planet-any', 0);
-            this.anchor.setTo(0.5, 0.5);
-        }
+        this.isHovered = false;
     }
 } 

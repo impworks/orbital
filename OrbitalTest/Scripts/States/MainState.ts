@@ -40,6 +40,7 @@
     scoreCounter: ScoreCounter;
 
     orbit: Orbit;
+    orbitHint: OrbitHint;
 
     // -----------------------
     // Resource loading
@@ -67,6 +68,7 @@
         this.planets = this.createPlanets();
         this.plasma = new Plasma(this.game, 450, 320);
         this.scoreCounter = new ScoreCounter(this.game);
+        this.orbitHint = new OrbitHint(this.game);
 
         this.layers = {
             bg: this.game.add.group(),
@@ -78,6 +80,7 @@
 
         this.layers.bg.add(this.bg);
         this.layers.planets.addMultiple(this.planets);
+        this.layers.orbits.add(this.orbitHint);
         this.layers.rocket.add(this.rocket);
         this.layers.ui.add(this.scoreCounter);
 
@@ -111,6 +114,7 @@
 
     update() {
         this.moveRocket();
+        this.updateOrbitHint();
         this.checkCollisions();
     }
 
@@ -132,6 +136,19 @@
 
         r.rotation = Math.atan2(dist.y, dist.x);
         r.position.set(newPos.x, newPos.y);
+    }
+
+    updateOrbitHint() {
+        var hovered = null;
+        for (var i = 0; i < this.planets.length; i++) {
+            var curr = this.planets[i];
+            if (curr.isHovered) {
+                hovered = curr;
+                break;
+            }
+        }
+
+        this.orbitHint.updateHint(this.rocket, hovered);
     }
 
     checkCollisions() {

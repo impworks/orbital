@@ -12,8 +12,6 @@
 
         this.calculateProperties();
         this.createGraphics();
-
-        this.game.add.existing(this);
     }
 
     // -----------------------

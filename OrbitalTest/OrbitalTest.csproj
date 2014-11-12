@@ -30,6 +30,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Libs\phaser.d.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\OrbitHint.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
     <TypeScriptCompile Include="Scripts\Objects\ScoreCounter.ts" />
