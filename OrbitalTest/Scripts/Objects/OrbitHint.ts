@@ -1,5 +1,4 @@
 ﻿class OrbitHint extends Phaser.Graphics {
-
     // -----------------------
     // Constructor
     // -----------------------

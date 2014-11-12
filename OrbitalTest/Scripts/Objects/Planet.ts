@@ -21,6 +21,8 @@
 
         this.isSelected = false;
         this.isHovered = false;
+
+        this.circle = new Phaser.Circle(x, y, 71);
     }
 
     // -----------------------
@@ -51,6 +53,8 @@
             this.anchor.setTo(0.5, 0.5);
         }
     }
+
+    circle: Phaser.Circle;
 
     // -----------------------
     // Fields

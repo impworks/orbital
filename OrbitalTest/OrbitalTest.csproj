@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Libs\phaser.d.ts" />
+    <TypeScriptCompile Include="Scripts\Helpers\CollisionHelper.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
     <TypeScriptCompile Include="Scripts\Objects\OrbitHint.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />

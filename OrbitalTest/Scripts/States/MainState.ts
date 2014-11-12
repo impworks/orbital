@@ -155,19 +155,16 @@
 
     checkCollisions() {
         // rocket and plasma
-        if (this.rocket.overlap(this.plasma)) {
+        if (CollisionHelper.collidesRectCircle(this.rocket.rect, this.rocket.rotation, this.plasma.circle)) {
             this.scoreCounter.score++;
             this.movePlasma();
         }
 
         this.planets.forEach(p => {
-            if (p.overlap(this.rocket)) {
+            if (CollisionHelper.collidesRectCircle(this.rocket.rect, this.rocket.rotation, p.circle)) {
                 this.restartGame();
             }
         });
-
-//        if (!this.bounds.playZone.contains(this.rocket.position.x, this.rocket.position.y))
-//            this.restartGame();
     }
 
     movePlasma() {
