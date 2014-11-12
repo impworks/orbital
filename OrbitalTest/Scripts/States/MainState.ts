@@ -29,7 +29,7 @@
         bg: Phaser.Group;
         planets: Phaser.Group;
         orbits: Phaser.Group;
-        rocket: Phaser.Group;
+        objects: Phaser.Group;
         ui: Phaser.Group;
     };
 
@@ -74,14 +74,15 @@
             bg: this.game.add.group(),
             planets: this.game.add.group(),
             orbits: this.game.add.group(),
-            rocket: this.game.add.group(),
+            objects: this.game.add.group(),
             ui: this.game.add.group()
         };
 
         this.layers.bg.add(this.bg);
         this.layers.planets.addMultiple(this.planets);
         this.layers.orbits.add(this.orbitHint);
-        this.layers.rocket.add(this.rocket);
+        this.layers.objects.add(this.rocket);
+        this.layers.objects.add(this.plasma);
         this.layers.ui.add(this.scoreCounter);
 
         this.setRocketOrbit(this.planets[0]);
@@ -155,7 +156,7 @@
         // rocket and plasma
         if (this.rocket.overlap(this.plasma)) {
             this.scoreCounter.score++;
-            this.plasma.position.set(this.bounds.playZone.randomX, this.bounds.playZone.randomY);
+            this.movePlasma();
         }
 
         this.planets.forEach(p => {
@@ -166,6 +167,30 @@
 
 //        if (!this.bounds.playZone.contains(this.rocket.position.x, this.rocket.position.y))
 //            this.restartGame();
+    }
+
+    movePlasma() {
+        var x: number;
+        var y: number;
+
+        while (true) {
+            x = this.bounds.playZone.randomX;
+            y = this.bounds.playZone.randomY;
+
+            var tooClose = false;
+            for (var i = 0; i < this.planets.length; i++) {
+                var p = this.planets[i].position;
+                var dsq = Math.pow(p.x - x, 2) + Math.pow(p.y - y, 2);
+                if (dsq < 3600) {
+                    tooClose = true;
+                    break;
+                }
+            }
+
+            if(!tooClose) break;
+        }
+
+        this.plasma.position.set(x, y);
     }
 
     restartGame() {
