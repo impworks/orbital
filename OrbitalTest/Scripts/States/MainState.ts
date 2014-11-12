@@ -90,8 +90,9 @@
 
     createPlanets(): Planet[] {
         return [
-            new Planet(this.game, 300, 300, this),
-            new Planet(this.game, 700, 400, this)
+            new Planet(this.game, 480, 150, this),
+            new Planet(this.game, 200, 500, this),
+            new Planet(this.game, 800, 450, this)
         ];
     }
 
