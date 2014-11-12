@@ -25,6 +25,14 @@
         playZone: Phaser.Rectangle;
     };
 
+    layers: {
+        bg: Phaser.Group;
+        planets: Phaser.Group;
+        orbits: Phaser.Group;
+        rocket: Phaser.Group;
+        ui: Phaser.Group;
+    };
+
     bg: SkyBackground;
     rocket: Rocket;
     planets: Planet[];
@@ -55,12 +63,23 @@
 
     create() {
         this.bg = new SkyBackground(this.game);
-
         this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.planets = this.createPlanets();
-
         this.plasma = new Plasma(this.game, 450, 320);
         this.scoreCounter = new ScoreCounter(this.game);
+
+        this.layers = {
+            bg: this.game.add.group(),
+            planets: this.game.add.group(),
+            orbits: this.game.add.group(),
+            rocket: this.game.add.group(),
+            ui: this.game.add.group()
+        };
+
+        this.layers.bg.add(this.bg);
+        this.layers.planets.addMultiple(this.planets);
+        this.layers.rocket.add(this.rocket);
+        this.layers.ui.add(this.scoreCounter);
 
         this.setRocketOrbit(this.planets[0]);
     }
@@ -83,6 +102,7 @@
         }
 
         this.orbit = new Orbit(this.game, this.rocket, p);
+        this.layers.orbits.add(this.orbit);
     }
 
     // -----------------------

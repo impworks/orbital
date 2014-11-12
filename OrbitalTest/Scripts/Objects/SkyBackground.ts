@@ -9,7 +9,5 @@
         bmp.context.fillRect(0, 0, OrbitalGame.SCREEN_WIDTH, OrbitalGame.SCREEN_HEIGHT);
 
         super(game, 0, 0, bmp);
-
-        game.add.existing(this);
     }
 }

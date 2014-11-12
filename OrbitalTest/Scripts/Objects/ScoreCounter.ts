@@ -5,8 +5,6 @@
 
     constructor(game: Phaser.Game) {
         super(game, 10, 10, 'Points: 0', { font: '14px Tahoma', fill: '#FFFFFF', align: 'left' });
-
-        this.game.add.existing(this);
         this._score = 0;
     }
 

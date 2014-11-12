@@ -12,7 +12,6 @@
         super(game, x, y, 'planet-any', 0);
         this.anchor.setTo(0.5, 0.5);
 
-        game.add.existing(this);
         this.interactive = true;
         this.inputEnabled = true;
 
