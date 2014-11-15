@@ -21,7 +21,9 @@
     <Content Include="Content\Sprites\planet-any.png" />
     <Content Include="Content\Sprites\planet-hover.png" />
     <Content Include="Content\Sprites\planet-selected.png" />
+    <Content Include="Content\Sprites\plasma-particle.png" />
     <Content Include="Content\Sprites\plasma.png" />
+    <Content Include="Content\Sprites\rocket-particle.png" />
     <Content Include="Content\Sprites\rocket.png" />
     <Content Include="index.html" />
     <Content Include="Libs\phaser.js" />
@@ -32,9 +34,12 @@
     <TypeScriptCompile Include="Scripts\Helpers\CollisionHelper.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
     <TypeScriptCompile Include="Scripts\Objects\OrbitHint.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Particles\ParticleBase.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Particles\PlasmaParticle.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Particles\RocketParticle.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
-    <TypeScriptCompile Include="Scripts\Objects\ScoreCounter.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Texts\ScoreCounter.ts" />
     <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
     <TypeScriptCompile Include="Scripts\Orbital.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Rocket.ts" />
@@ -48,6 +53,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
