@@ -243,5 +243,7 @@
         this.rocket.position.set(OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.setRocketOrbit(this.planets[0]);
         this.scoreCounter.score = 0;
+
+        this.layers.ui.add(new FailText(this.game));
     }
 }

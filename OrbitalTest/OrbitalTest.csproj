@@ -34,6 +34,7 @@
     <TypeScriptCompile Include="Libs\lodash.d.ts" />
     <TypeScriptCompile Include="Libs\phaser.d.ts" />
     <TypeScriptCompile Include="Scripts\Helpers\CollisionHelper.ts" />
+    <TypeScriptCompile Include="Scripts\Helpers\FontLoader.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
     <TypeScriptCompile Include="Scripts\Objects\OrbitHint.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Particles\ParticleBase.ts" />
@@ -41,6 +42,7 @@
     <TypeScriptCompile Include="Scripts\Objects\Particles\RocketParticle.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Planet.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Texts\FailText.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Texts\ScoreCounter.ts" />
     <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Texts\ScoreText.ts" />
