@@ -86,7 +86,9 @@
             'planet-any',
             'planet-hover',
             'planet-selected',
-            'plasma'
+            'plasma',
+            'rocket-particle',
+            'plasma-particle'
         ];
 
         assets.forEach(name => this.load.image(name, 'Content/Sprites/' + name + '.png'));
@@ -98,9 +100,9 @@
 
     create() {
         this.bg = new SkyBackground(this.game);
-        this.rocket = new Rocket(this.game, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
+        this.rocket = new Rocket(this, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.planets = this.createPlanets();
-        this.plasma = new Plasma(this.game, 450, 320);
+        this.plasma = new Plasma(this, 450, 320);
         this.scoreCounter = new ScoreCounter(this.game);
         this.orbitHint = new OrbitHint(this.game);
 
@@ -202,6 +204,7 @@
                 score.color
             ));
             this.scoreCounter.score += score.score;
+            this.plasma.burst();
             this.movePlasma();
         }
 
