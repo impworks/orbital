@@ -33,7 +33,7 @@
         var dist = this.distanceBetween(this.rocket, this.planet);
         var radius = Math.sqrt(Math.pow(dist.x, 2) + Math.pow(dist.y, 2));
         var angle = Math.atan2(dist.y, dist.x);
-        var speed = 3;
+        var speed = this.rocket	.speed;
         var angleIncrement = this.angleIncrementFor(radius, speed);
 
         this.state = {

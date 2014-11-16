@@ -100,7 +100,7 @@
 
     create() {
         this.bg = new SkyBackground(this.game);
-        this.rocket = new Rocket(this, OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
+        this.rocket = new Rocket(this);
         this.planets = this.createPlanets();
         this.plasma = new Plasma(this, 450, 320);
         this.scoreCounter = new ScoreCounter(this.game);
@@ -206,6 +206,7 @@
             this.scoreCounter.score += score.score;
             this.plasma.burst();
             this.movePlasma();
+            this.rocket.speedUp();
         }
 
         this.planets.forEach(p => {
@@ -240,6 +241,7 @@
     }
 
     restartGame() {
+        this.rocket.resetRocket();
         this.rocket.position.set(OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
         this.setRocketOrbit(this.planets[0]);
         this.scoreCounter.score = 0;

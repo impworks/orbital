@@ -3,10 +3,11 @@
     // Constructor
     // -----------------------
 
-    constructor(state: MainState, x: number, y: number) {
-        super(state.game, x, y, 'rocket', 0);
+    constructor(state: MainState) {
+        super(state.game, 0, 0, 'rocket', 0);
         this.state = state;
         this.anchor.setTo(0.5, 0.5);
+        this.resetRocket();
     }
 
     // -----------------------
@@ -14,6 +15,7 @@
     // -----------------------
 
     state: MainState;
+    speed: number;
 
     get rect(): Phaser.Rectangle {
         return new Phaser.Rectangle(this.x, this.y, this.width, this.height);
@@ -32,5 +34,14 @@
                 new RocketParticle(this.game, endX, endY, dir)
             );
         }
+    }
+
+    speedUp() {
+        this.speed += 0.1;
+    }
+
+    resetRocket() {
+        this.speed = 3;
+        this.position.set(OrbitalGame.SCREEN_WIDTH / 2, OrbitalGame.SCREEN_HEIGHT / 3 * 2);
     }
 } 
