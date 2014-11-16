@@ -14,6 +14,33 @@
             screen: new Phaser.Rectangle(0, 0, w, h),
             playZone: new Phaser.Rectangle(w * margin, h * margin, w - w*margin*2, h-h*margin*2)
         };
+
+        this.scoring = [
+            {
+                distance: 4,
+                score: 1000,
+                prefix: "PERFECT! ",
+                color: '#FFAA00'
+            },
+            {
+                distance: 25,
+                score: 500,
+                prefix: "Awesome! ",
+                color: '#FFFF00'
+            },
+            {
+                distance: 64,
+                score: 200,
+                prefix: "Good! ",
+                color: '#AAFFAA'
+            },
+            {
+                distance: 10000,
+                score: 100,
+                prefix: "",
+                color: '#FFFFFF'
+            },
+        ];
     }
 
     // -----------------------
@@ -32,6 +59,13 @@
         objects: Phaser.Group;
         ui: Phaser.Group;
     };
+    
+    scoring: {
+        distance: number;
+        score: number;
+        prefix: string;
+        color: string;
+    }[];
 
     bg: SkyBackground;
     rocket: Rocket;
@@ -156,7 +190,18 @@
     checkCollisions() {
         // rocket and plasma
         if (CollisionHelper.collidesRectCircle(this.rocket.rect, this.rocket.rotation, this.plasma.circle)) {
-            this.scoreCounter.score++;
+            var plasmaDsq = Math.sqrt(Math.pow(this.plasma.x - this.orbit.planet.x, 2) + Math.pow(this.plasma.y - this.orbit.planet.y, 2));
+            var dsq = Math.abs(this.orbit.state.radius - plasmaDsq);
+            console.log(dsq);
+            var score = _.find(this.scoring, x => dsq <= x.distance);
+            this.layers.ui.add(new ScoreText(
+                this.game,
+                this.plasma.x,
+                this.plasma.y - 32,
+                score.prefix + '+' + score.score,
+                score.color
+            ));
+            this.scoreCounter.score += score.score;
             this.movePlasma();
         }
 

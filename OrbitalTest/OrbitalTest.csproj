@@ -26,10 +26,12 @@
     <Content Include="Content\Sprites\rocket-particle.png" />
     <Content Include="Content\Sprites\rocket.png" />
     <Content Include="index.html" />
+    <Content Include="Libs\lodash.min.js" />
     <Content Include="Libs\phaser.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Libs\lodash.d.ts" />
     <TypeScriptCompile Include="Libs\phaser.d.ts" />
     <TypeScriptCompile Include="Scripts\Helpers\CollisionHelper.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Orbit.ts" />
@@ -41,6 +43,7 @@
     <TypeScriptCompile Include="Scripts\Objects\Plasma.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Texts\ScoreCounter.ts" />
     <TypeScriptCompile Include="Scripts\Objects\SkyBackground.ts" />
+    <TypeScriptCompile Include="Scripts\Objects\Texts\ScoreText.ts" />
     <TypeScriptCompile Include="Scripts\Orbital.ts" />
     <TypeScriptCompile Include="Scripts\Objects\Rocket.ts" />
     <TypeScriptCompile Include="Scripts\States\MainState.ts" />

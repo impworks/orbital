@@ -18,5 +18,5 @@
 }
 
 window.onload = () => {
-    var game = new OrbitalGame();
+    new OrbitalGame();
 }
